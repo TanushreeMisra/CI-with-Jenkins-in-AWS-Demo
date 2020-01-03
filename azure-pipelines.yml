@@ -42,15 +42,17 @@ steps:
     Action: 'Stop Azure App Service'
     WebAppName: 'AzureDockerInst'
 
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Free Trial(9fbf3040-61af-4df0-b41d-4a34667d3240)'
+    azureSubscription: 'AzureConnection'
     appType: 'webAppContainer'
     WebAppName: 'AzureDockerInst'
-    DockerNamespace: 'azuretcsContainer'
+    DockerNamespace: 'azuretcscontainer.azurecr.io'
     DockerRepository: 'devopspoc'
     DockerImageTag: 'latest'
+
 
 - task: AzureAppServiceManage@0
   inputs:
