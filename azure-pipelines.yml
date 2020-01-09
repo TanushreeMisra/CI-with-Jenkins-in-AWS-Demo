@@ -50,7 +50,7 @@ steps:
     appType: 'webAppContainer'
     WebAppName: 'AzureDockerInst'
     DockerNamespace: 'azuretcscontainer.azurecr.io'
-    DockerRepository: 'devopspoc'
+    DockerRepository: 'kubernestespoc'
     DockerImageTag: 'latest'
 
 
