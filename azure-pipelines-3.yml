@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'e33ec7f5-794b-4419-b37e-c54c65d83dd9'
   imageRepository: 'tanushreemisraciwithjenkinsinawsdemo'
   containerRegistry: 'azuretcscontainer.azurecr.io'
-  dockerfilePath: '/Dockerfile'
+  dockerfilePath: 'Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'azuretcscontainer5014208f-auth'
 
