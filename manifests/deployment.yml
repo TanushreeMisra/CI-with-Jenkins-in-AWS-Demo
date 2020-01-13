@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: tanushreemisraciwithjenkinsinawsdemo 
-          image: azuretcscontainer.azurecr.io/tanushreemisraciwithjenkinsinawsdemo
+          image: azuretcscontainer.azurecr.io/devopspoc
           ports:
           - containerPort: 8080
