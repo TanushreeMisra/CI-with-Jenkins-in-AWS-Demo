@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'a5e1d1ac-b9ff-41bb-acf8-8ca0f17bc1f6'
   imageRepository: 'devopspoc'
   containerRegistry: 'azuretcscontainer.azurecr.io'
-  dockerfilePath: '/Dockerfile'
+  dockerfilePath: 'Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'azuretcscontainer18635374-auth'
 
