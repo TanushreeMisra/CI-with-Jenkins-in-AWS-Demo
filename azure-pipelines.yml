@@ -19,3 +19,21 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     goals: 'package'
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
+    azureContainerRegistry: '{"loginServer":"azurekscontainer.azurecr.io", "id" : "/subscriptions/a2580cc8-baab-4fe3-8dc0-143326b752a6/resourceGroups/azureks-rg/providers/Microsoft.ContainerRegistry/registries/azureksContainer"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Build services'
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
+    azureContainerRegistry: '{"loginServer":"azurekscontainer.azurecr.io", "id" : "/subscriptions/a2580cc8-baab-4fe3-8dc0-143326b752a6/resourceGroups/azureks-rg/providers/Microsoft.ContainerRegistry/registries/azureksContainer"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Push services'
+
+  
+
+
