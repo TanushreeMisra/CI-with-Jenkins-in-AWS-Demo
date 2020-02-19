@@ -19,21 +19,41 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     goals: 'package'
+
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
-    azureContainerRegistry: '{"loginServer":"azurekscontainer.azurecr.io", "id" : "/subscriptions/a2580cc8-baab-4fe3-8dc0-143326b752a6/resourceGroups/azureks-rg/providers/Microsoft.ContainerRegistry/registries/azureksContainer"}'
+    azureContainerRegistry: '{"loginServer":"azuredevopsproacr.azurecr.io", "id" : "/subscriptions/a2580cc8-baab-4fe3-8dc0-143326b752a6/resourceGroups/AzureDevopsPro-rg/providers/Microsoft.ContainerRegistry/registries/AzureDevopsProacr"}'
     dockerComposeFile: 'docker-compose.yml'
     action: 'Build services'
+
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
-    azureContainerRegistry: '{"loginServer":"azurekscontainer.azurecr.io", "id" : "/subscriptions/a2580cc8-baab-4fe3-8dc0-143326b752a6/resourceGroups/azureks-rg/providers/Microsoft.ContainerRegistry/registries/azureksContainer"}'
+    azureContainerRegistry: '{"loginServer":"azuredevopsproacr.azurecr.io", "id" : "/subscriptions/a2580cc8-baab-4fe3-8dc0-143326b752a6/resourceGroups/AzureDevopsPro-rg/providers/Microsoft.ContainerRegistry/registries/AzureDevopsProacr"}'
     dockerComposeFile: 'docker-compose.yml'
     action: 'Push services'
 
-  
+- task: AzureAppServiceManage@0
+  inputs:
+    azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
+    Action: 'Stop Azure App Service'
+    WebAppName: 'AzureDevopsPro'
 
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
+    appType: 'webAppContainer'
+    WebAppName: 'AzureDevopsPro'
+    DockerNamespace: 'azuredevopsproacr.azurecr.io'
+    DockerRepository: 'devopspoc'
+    DockerImageTag: 'latest'
 
+- task: AzureAppServiceManage@0
+  inputs:
+    azureSubscription: 'Free Trial(a2580cc8-baab-4fe3-8dc0-143326b752a6)'
+    Action: 'Start Azure App Service'
+    WebAppName: 'azuredevopspro'
